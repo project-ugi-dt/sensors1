@@ -131,15 +131,18 @@ valid users = pi
 read only = no
 browseable = yes
 public = yes
-writable = yes```
+writable = yes
+```
 Перезапуск:
-``` sudo systemctl restart smbd
+```bash
+ sudo systemctl restart smbd
 sudo systemctl enable smbd
 ```
 **Проверка работоспособности**
 1. Определите IP-адрес Raspberry Pi:
  ```bash
-hostname -I```
+hostname -I
+```
 3. В браузере откройте:
    ```bash
 http://<ip_raspberry>:8123
