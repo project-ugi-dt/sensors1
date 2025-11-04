@@ -1,4 +1,4 @@
-# Direct_send
+# Описание шагов по развертке и настройке оборудования
 # ClimateStation-FrostIntegration
 
 Развёртка и настройка локального сервера для приёма и интеграции данных с метеостанций Ecowitt и других сенсоров в систему Home Assistant с последующей передачей данных на FrostServer (SensorThings API).
