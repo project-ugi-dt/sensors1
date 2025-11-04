@@ -73,6 +73,7 @@
 5. Подключитесь через SSH с ПК:
    ```bash
    ssh <username>@<ip_raspberry>
+   ```
 ## Установка Docker и Home Assistant
 
 ### 1. Установка Docker
@@ -81,6 +82,7 @@
    ```bash
 sudo apt update && sudo apt upgrade -y
 sudo reboot
+```
 2. Установка Docker
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
