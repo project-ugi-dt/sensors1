@@ -89,6 +89,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker pi
 sudo reboot
+```
 Проверка:
 ```bash
 docker --version
@@ -144,7 +145,7 @@ sudo systemctl enable smbd
 hostname -I
 ```
 3. В браузере откройте:
-   ```bash
+```bash
 http://<ip_raspberry>:8123
  ```
 3. Создайте учётную запись Home Assistant.
