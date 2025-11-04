@@ -97,7 +97,6 @@ docker ps
 3. Установка Home Assistant
    ```bash
 mkdir -p /home/pi/homeassistant/config
-
 sudo docker run -d \
 --name homeassistant \
 --privileged \
@@ -110,7 +109,8 @@ ghcr.io/home-assistant/home-assistant:stable
 Проверка:
 ```bash
 docker ps
-docker logs homeassistant --tail=50```
+docker logs homeassistant --tail=50
+```
 4. Настройка дополнительных пакетов
 SQLite3
 ```bash
