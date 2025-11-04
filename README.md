@@ -78,21 +78,25 @@
 ### 1. Установка Docker
 
 1. Обновление системы
-   ```sudo apt update && sudo apt upgrade -y
+   ```bash
+sudo apt update && sudo apt upgrade -y
 sudo reboot
 ```
 2. Установка Docker
-``` curl -fsSL https://get.docker.com -o get-docker.sh
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker pi
 sudo reboot
 ```
 Проверка:
-```  docker --version
+```bash
+docker --version
 docker ps
 ```
 3. Установка Home Assistant
-   ```  mkdir -p /home/pi/homeassistant/config
+   ```bash
+mkdir -p /home/pi/homeassistant/config
 
 sudo docker run -d \
 --name homeassistant \
@@ -104,19 +108,23 @@ sudo docker run -d \
 ghcr.io/home-assistant/home-assistant:stable
 ```
 Проверка:
-```docker ps
+```bash
+docker ps
 docker logs homeassistant --tail=50```
 4. Настройка дополнительных пакетов
 SQLite3
-``` sudo apt install sqlite3 -y
+```bash
+sudo apt install sqlite3 -y
 sqlite3 --version
  ```
 Samba
-``` sudo apt install samba samba-common-bin -y
+```bash
+sudo apt install samba samba-common-bin -y
 sudo nano /etc/samba/smb.conf
  ```
 Добавьте в конец файла:
-```[homeassistant]
+```bash
+[homeassistant]
 path = /home/pi/homeassistant/config
 available = yes
 valid users = pi
@@ -130,9 +138,11 @@ sudo systemctl enable smbd
 ```
 **Проверка работоспособности**
 1. Определите IP-адрес Raspberry Pi:
- ```  hostname -I```
-2. В браузере откройте:
-   ``` http://<ip_raspberry>:8123
+ ```bash
+hostname -I```
+3. В браузере откройте:
+   ```bash
+http://<ip_raspberry>:8123
  ```
 3. Создайте учётную запись Home Assistant.
 4. Настройте локацию, страну, единицы измерения.
