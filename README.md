@@ -90,7 +90,7 @@
 sudo apt install docker.io docker-compose -y
 sudo systemctl enable docker
 sudo systemctl start docker
-
+ ```
 
 ## 3. Подключение Ecowitt к Home Assistant
 
