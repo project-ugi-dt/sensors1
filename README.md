@@ -81,14 +81,12 @@
    ```bash
 sudo apt update && sudo apt upgrade -y
 sudo reboot
-```
 2. Установка Docker
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker pi
 sudo reboot
-```
 Проверка:
 ```bash
 docker --version
