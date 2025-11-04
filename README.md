@@ -87,6 +87,9 @@ sudo reboot
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker pi
+```
+Перезапуск
+```bash
 sudo reboot
 ```
 Проверка:
@@ -122,7 +125,7 @@ Samba
 sudo apt install samba samba-common-bin -y
 sudo nano /etc/samba/smb.conf
  ```
-Добавьте в конец файла:
+Затем:
 ```bash
 [homeassistant]
 path = /home/pi/homeassistant/config
@@ -132,6 +135,10 @@ read only = no
 browseable = yes
 public = yes
 writable = yes
+```
+Последнее ПО
+```bash
+sudo apt install nano -y
 ```
 Перезапуск:
 ```bash
