@@ -77,43 +77,67 @@
 
 ### 1. Установка Docker
 
-**Для Windows (через WSL):**
+1. Обновление системы
+   ```sudo apt update && sudo apt upgrade -y
+sudo reboot
+```
+2. Установка Docker
+``` curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker pi
+sudo reboot
+```
+Проверка:
+```  docker --version
+docker ps
+```
+3. Установка Home Assistant
+   ```  mkdir -p /home/pi/homeassistant/config
 
-1. Установите [Docker Desktop](https://www.docker.com/products/docker-desktop/).  
-2. Убедитесь, что включена поддержка **WSL2**.  
-3. После установки проверьте работу Docker:
-   ```bash
-   docker --version
-   docker compose version
-**Для Linux (Ubuntu/Debian)**
- ```sudo apt update
-sudo apt install docker.io docker-compose -y
-sudo systemctl enable docker
-sudo systemctl start docker
- ```
-Проверьте:
- ```docker --version
- ```
-## 2. Развёртывание Home Assistant
-1.Создайте отдельную директорию для Home Assistant:
-```mkdir homeassistant
-cd homeassistant
+sudo docker run -d \
+--name homeassistant \
+--privileged \
+--restart=unless-stopped \
+-e TZ=Europe/Moscow \
+-v /home/pi/homeassistant/config:/config \
+--network=host \
+ghcr.io/home-assistant/home-assistant:stable
 ```
-2. Создайте файл docker-compose.yml со следующим содержимым:
-```version: '3'
-services:
-  homeassistant:
-    container_name: homeassistant
-    image: ghcr.io/home-assistant/home-assistant:stable
-    volumes:
-      - ./config:/config
-    restart: unless-stopped
-    network_mode: host
+Проверка:
+```docker ps
+docker logs homeassistant --tail=50```
+4. Настройка дополнительных пакетов
+SQLite3
+``` sudo apt install sqlite3 -y
+sqlite3 --version
+ ```
+Samba
+``` sudo apt install samba samba-common-bin -y
+sudo nano /etc/samba/smb.conf
+ ```
+Добавьте в конец файла:
+```[homeassistant]
+path = /home/pi/homeassistant/config
+available = yes
+valid users = pi
+read only = no
+browseable = yes
+public = yes
+writable = yes```
+Перезапуск:
+``` sudo systemctl restart smbd
+sudo systemctl enable smbd
 ```
-3. Запустите контейнер:
-```docker compose up -d```
-4. После запуска Home Assistant будет доступен по адресу:
-   ```http://localhost:8123```
+**Проверка работоспособности**
+1. Определите IP-адрес Raspberry Pi:
+ ```  hostname -I```
+2. В браузере откройте:
+   ``` http://<ip_raspberry>:8123
+ ```
+3. Создайте учётную запись Home Assistant.
+4. Настройте локацию, страну, единицы измерения.
+
+
 
 ## 3. Подключение Ecowitt к Home Assistant
 
